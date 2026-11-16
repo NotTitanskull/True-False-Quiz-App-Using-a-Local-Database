@@ -1,0 +1,8 @@
+﻿<maui:MauiWinUIApplication
+    x:Class="true_false_quiz.WinUI.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:maui="using:Microsoft.Maui"
+    xmlns:local="using:true_false_quiz.WinUI">
+
+</maui:MauiWinUIApplication>

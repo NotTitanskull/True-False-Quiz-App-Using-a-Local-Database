@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="true_false_quiz.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="16,24"
+            Spacing="16">
+
+            <Label
+                Text="Which mana color fits your playstyle?"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+
+            <Label
+                x:Name="QuestionCounterLabel" />
+
+            <ProgressBar
+                x:Name="QuizProgress" />
+
+            <Border x:Name="QuestionCard" IsVisible="False"
+                    Padding="0"
+                    StrokeShape="RoundRectangle 12">
+
+                <Border.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Left" Swiped="OnAnswerSwiped" />
+                    <SwipeGestureRecognizer Direction="Right" Swiped="OnAnswerSwiped" />
+                </Border.GestureRecognizers>
+
+                <VerticalStackLayout Spacing="12">
+                    <Grid x:Name="Instructions" ColumnDefinitions="Auto,*,Auto"
+                          Margin="16,12,16,0" ColumnSpacing="8" InputTransparent="True">
+                        <Label VerticalTextAlignment="Center" SemanticProperties.Description="Swipe left for False">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="← " FontSize="22" FontAttributes="Bold"
+                                          TextColor="{AppThemeBinding Light=#B42335, Dark=#FF9098}" />
+                                    <Span Text="False" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Grid.Column="1" Text="Swipe to answer"
+                               HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        <Label Grid.Column="2" VerticalTextAlignment="Center" SemanticProperties.Description="Swipe right for True">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="True" />
+                                    <Span Text=" →" FontSize="22" FontAttributes="Bold"
+                                          TextColor="{AppThemeBinding Light=#167044, Dark=#74DDA1}" />
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Image
+                        x:Name="QuestionImage"
+                        HorizontalOptions="Fill"
+                        Aspect="AspectFit"
+                        SizeChanged="OnArtworkSizeChanged" />
+                    <Label
+                        x:Name="ArtCredit"
+                        FontAttributes="Italic"
+                        HorizontalTextAlignment="Center" />
+                    <Label
+                        x:Name="QuestionLabel"
+                        Margin="16,8,16,16"
+                        FontSize="24" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Grid x:Name="AnswerButtons" ColumnDefinitions="*,*" ColumnSpacing="12" IsVisible="False">
+                <Button Text="False" Clicked="OnFalseClicked" MinimumHeightRequest="48" />
+                <Button Grid.Column="1" Text="True" Clicked="OnTrueClicked" MinimumHeightRequest="48" />
+            </Grid>
+
+            <VerticalStackLayout x:Name="TieChoices" IsVisible="False" Spacing="8" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
